@@ -1,0 +1,8 @@
+---
+# handlers file for nosqlserver
+
+- name: Redis Restart
+  service: name={{ item }} state=restarted enabled=yes
+  with_items:
+  - redis-server  
+  sudo: true

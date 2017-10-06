@@ -1,0 +1,5 @@
+---
+
+- include: webserver.yml
+- include: sql-server.yml
+- include: nosql-server.yml

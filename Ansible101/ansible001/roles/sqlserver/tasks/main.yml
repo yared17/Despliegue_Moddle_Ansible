@@ -1,0 +1,14 @@
+---
+# tasks file for sqlserver
+
+- name: Install sqlserver
+  apt: name={{item}}
+  with_items:
+    - python-mysqldb
+    - mysql-server
+
+- name: setup root password
+  debconf: name='sqlserver' question='sqlserver/root_password' value={{'123456'}} vtype='password'
+
+- name: root-password again
+  debconf: name='sqlserver' question='sqlserver/root_password_again' value={{'123456'}} vtype='password'

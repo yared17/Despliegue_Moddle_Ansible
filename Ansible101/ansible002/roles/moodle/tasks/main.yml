@@ -1,0 +1,29 @@
+---
+# tasks file for moodle
+
+- name: Update apt
+  command: apt-get update
+
+- name: Installing pre-requisites
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - git
+    - unzip
+
+- name: Create user
+  user: name=moodle_user
+
+- name: Creating moodle directory
+  file: dest=" " state=directory owner="moodle_user"
+
+- name: download moodle
+  git: repo=http://github.com/moodle/moodle.git version="33" dest=" " accept_hostkey=yes
+
+- name: Configure Moodle
+  template: src=config.php.j2 dest=" "
+
+- name: Creating docs
+  file: dest=" " state=directory owner="moodle_user"
+
+- name: Setting up cron
+  cron: name="Moodle" job="/usr/bin/php "

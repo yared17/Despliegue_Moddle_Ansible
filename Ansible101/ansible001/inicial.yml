@@ -1,0 +1,6 @@
+---
+  - name: Instalación y configuración de un stack para web
+    hosts: web, sql, nosql
+    remote_user: root
+    roles:
+     - common

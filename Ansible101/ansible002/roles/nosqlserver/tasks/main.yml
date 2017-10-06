@@ -1,0 +1,19 @@
+---
+# tasks file for nosqlserver
+
+- name: install redis
+  apt: pkg={{ item }} state=latest
+  with_items:
+  - redis-server
+  sudo: true
+
+- name: start redis
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+  - redis-server
+  become: yes
+
+- name: config
+  template: src=redis.conf.j2 dest=/etc/redis/redis.conf owner=root group=root mode=0600
+  become: yes
+  notify: Redis Restart
