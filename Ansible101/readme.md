@@ -5,7 +5,7 @@ Para realizar las prácticas debes tener instalado en el equipo o servidor de pr
   - Docker
   - Python
 
-#### Instalación de Ansible
+#### Instalación de Ansible desde afuera de la carpeta de tu proyecto solo este comando
 
         pip install ansible
 
